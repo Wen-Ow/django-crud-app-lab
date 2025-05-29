@@ -21,7 +21,7 @@ def watchitem_detail(request, pk): # Detail view for a specific watch item
 
 class WatchItemCreate(CreateView): # Create view for adding a new watch item
     model = WatchItem
-    fields = ['title', 'item_type', 'description', 'release_date'] # Fields to be included in the form
+    fields = ['title', 'item_type', 'description'] # Fields to be included in the form
     success_url = '/watchitems/'
 
     def form_valid(self, form):
@@ -30,7 +30,7 @@ class WatchItemCreate(CreateView): # Create view for adding a new watch item
 
 class WatchItemUpdate(UpdateView): # Update view for editing an existing watch item
     model = WatchItem
-    fields = ['title', 'item_type', 'description', 'release_date']
+    fields = ['title', 'item_type', 'description']
     success_url = '/watchitems/'
 
 class WatchItemDelete(DeleteView): # Delete view for removing a watch item

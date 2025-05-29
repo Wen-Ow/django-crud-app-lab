@@ -1,0 +1,13 @@
+{% extends 'main_app/base.html' %} {% block content %}
+<h2>My Watchlist</h2>
+<a href="{% url 'watchitem_create' %}">Add New Item</a>
+<ul>
+  {% for item in watchitems %}
+  <li>
+    <a href="{% url 'watchitem_detail' item.pk %}"> {{ item.title }} ({{ item.item_type }}) </a>
+  </li>
+  {% empty %}
+  <li>No items yet. Add your first!</li>
+  {% endfor %}
+</ul>
+{% endblock %}

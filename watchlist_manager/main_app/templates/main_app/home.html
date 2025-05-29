@@ -1,0 +1,13 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+<h2>Welcome to Your Watchlist Manager</h2>
+<p>Manage and track your favorite movies, TV shows, and anime series with ease and simplicity.</p>
+{% if user.is_authenticated %}
+<p><a href="{% url 'watchitem_index' %}">View My Watchlist</a></p>
+{% else %}
+<p><a href="{% url 'login' %}">Login</a> or <a href="{% url 'signup' %}">Sign Up</a> to start managing your watchlist.</p>
+{% endif %}
+{% endblock %}
+
+
