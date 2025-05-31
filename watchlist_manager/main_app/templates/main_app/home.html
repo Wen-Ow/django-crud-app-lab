@@ -3,4 +3,18 @@
 <p>Manage and track your favorite movies, TV shows, and anime series with ease and simplicity.</p>
 {% if user.is_authenticated %}
 <h1>My Watchlist</h1>
-{% endif %} {% endblock %}
+<ul>
+  {% for item in watchlist_items %}
+  <li>
+    <strong>{{ item.title }}</strong> - {{ item.genre }} ({{ item.release_year }}) {% if item.watched %}
+    <span class="watched">Watched</span>
+    {% else %}
+    <span class="not-watched">Not Watched</span>
+    {% endif %} {% if item.rating %}
+    <span class="rating">Rating: {{ item.rating }}/10</span>
+    {% endif %}
+  </li>
+  {% empty %}
+  <li>No items in your watchlist yet.</li>
+  {% endfor %} {% endif %} {% endblock %}
+</ul>
