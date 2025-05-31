@@ -1,0 +1,22 @@
+{% extends 'layout.html'%} {% block content %}
+<h2>Login User</h2>
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required />
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required />
+  </div>
+  <button type="submit">Login</button>
+</form>
+
+<p>Don't have an account? <a href="{% url 'register' %}">Sign up</a> here.</p>
+
+{% if form.errors %}
+<div class="error">
+  <p>Invalid username or password. Please try again.</p>
+</div>
+{% endif %} {% endblock %}
