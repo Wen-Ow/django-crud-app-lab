@@ -1,0 +1,19 @@
+{% extends 'layout.html' %} {% block content %}
+
+<h2>Watchlist Item Details</h2>
+<p>Title: {{ watchlist_item.title }}</p>
+<p>Description: {{ watchlist_item.description }}</p>
+<p>Genre: {{ watchlist_item.genre }}</p>
+<p>Watched: {% if watchlist_item.watched %} Yes {% else %} No {% endif %}</p>
+<p>Rating: {% if watchlist_item.rating %} {{ watchlist_item.rating }}/10 {% else %} Not Rated {% endif %}</p>
+
+<p>Release Year:{{ watchlist_item.release_year }}</p>
+
+{% if user.is_authenticated %}
+<a href="{% url 'edit_watchlist' watchlist_item.id %}">Edit</a>
+<a href="{% url 'delete_watchlist' watchlist_item.id %}">Delete</a>
+{% else %}
+<p>Please log in to edit or delete this item.</p>
+{% endif %}
+<a href="{% url 'home' %}">Go back</a>
+{% endblock %}

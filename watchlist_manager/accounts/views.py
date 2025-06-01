@@ -3,6 +3,9 @@ from .forms import RegisterUserForm
 from django.contrib.auth import authenticate, login, logout
 # Register View
 def registerView(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    
     form = RegisterUserForm()
     if request.method == 'POST':
         # Handle registration logic here
@@ -24,7 +27,10 @@ def registerView(request):
         # Render registration form
         return render(request, 'accounts/register.html', context)
 
+
 def loginView(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     # Handle login logic here
     if request.method == 'POST':
         username = request.POST.get('username')

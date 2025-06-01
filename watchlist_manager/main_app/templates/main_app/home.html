@@ -3,6 +3,7 @@
 <p>Manage and track your favorite movies, TV shows, and anime series with ease and simplicity.</p>
 {% if user.is_authenticated %}
 <h1>My Watchlist</h1>
+
 <ul>
   {% for item in watchlist_items %}
   <li>
@@ -12,7 +13,9 @@
     <span class="not-watched">Not Watched</span>
     {% endif %} {% if item.rating %}
     <span class="rating">Rating: {{ item.rating }}/10</span>
-    {% endif %}
+    <a href="{% url 'watchlist_details' item.id %}">View</a>
+
+    {% else %} {% endif %}
   </li>
   {% empty %}
   <li>No items in your watchlist yet.</li>

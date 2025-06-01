@@ -1,0 +1,40 @@
+{% extends 'layout.html' %} {% block content %}
+<h2>Edit Watch Item</h2>
+<form method="post">
+  {% csrf_token %}
+
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required value="{{ watchlist_item.title }}" />
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required>{{ watchlist_item.description }}</textarea>
+  </div>
+  <div>
+    <label for="genre">Genre:</label>
+    <select id="genre" name="genre" required>
+      <option value="Action" {% if watchlist_item.genre == 'Action' %} selected {% endif %}>Action</option>
+      <option value="Comedy" {% if watchlist_item.genre == 'Comedy' %} selected {% endif %}>Comedy</option>
+      <option value="Drama" {% if watchlist_item.genre == 'Drama' %} selected {% endif %}>Drama</option>
+      <option value="Horror" {% if watchlist_item.genre == 'Horror' %} selected {% endif %}>Horror</option>
+      <option value="Sci-Fi" {% if watchlist_item.genre == 'Sci-Fi' %} selected {% endif %}>Sci-Fi</option>
+      <option value="Romance" {% if watchlist_item.genre == 'Romance' %} selected {% endif %}>Romance</option>
+      <option value="Documentary" {% if watchlist_item.genre == 'Documentary' %} selected {% endif %}>Documentary</option>
+    </select>
+  </div>
+  <div>
+    <label for="watched">Watched:</label>
+    <input type="checkbox" id="watched" name="watched" {% if watchlist_item.watched %} checked {% endif %} />
+  </div>
+  <div>
+    <label for="rating">Rating:</label>
+    <input type="number" id="rating" name="rating" min="0" max="10" step="1" value="{{ watchlist_item.rating }}" />
+  </div>
+  <div>
+    <label for="release_year">Release Year:</label>
+    <input type="text" id="release_year" name="release_year" value="{{ watchlist_item.release_year }}" />
+  </div>
+  <button type="submit">Update Item</button>
+</form>
+{% endblock %}
